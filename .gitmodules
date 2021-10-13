@@ -1,0 +1,9 @@
+[submodule "client/src/app/ematic-core-ui"]
+	path = client/src/app/ematic-core-ui
+	url = https://Andjelina@bitbucket.org/ematicsolutions/ematic-core-ui.git
+[submodule "open-weather-client/src/app/ematic-core-ui"]
+	path = open-weather-client/src/app/ematic-core-ui
+	url = https://Andjelina@bitbucket.org/ematicsolutions/ematic-core-ui.git
+[submodule "src/app/ematic-core-ui"]
+	path = src/app/ematic-core-ui
+	url = https://Andjelina@bitbucket.org/ematicsolutions/ematic-core-ui.git
