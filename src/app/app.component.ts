@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
     console.log(this.onCitiesQuery);
   }
 
-  //metoda za dodavanje novog grada u bazy uz dugme click me
+  //metoda za dodavanje novog grada u bazu
   onAddCity(city: ICity) {
     this.cityService.addNewCity(this.city).
     subscribe(responseCity => {
