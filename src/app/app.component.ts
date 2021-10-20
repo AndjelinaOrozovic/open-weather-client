@@ -44,6 +44,11 @@ export class AppComponent implements OnInit {
 
   //metoda za dodavanje novog grada u bazu
   onAddCity(city: ICity) {
+    for (var i in this.citiesFromDatabase) {
+      if (this.citiesFromDatabase[i].name == city.name) {
+        window.alert("City already exists!");
+      }
+    }
     this.cityService.addNewCity(this.city).
     subscribe(responseCity => {
       console.log(responseCity);
