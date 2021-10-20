@@ -15,8 +15,12 @@
           [(ngModel)] = "city"
           name = "cityN"
           [query]="onCitiesQuery"
-        ></es-lookup>
-        <es-button [disabled]="" placeholder="'save new city'"></es-button>
+        ></es-lookup> <br>
+        <es-button
+          [disabled]="!city"
+          text="Save new city!"
+          (click)="onAddCity(city)"
+        ></es-button> <br>
         <!-- <button (click)="onAddCity()">Add</button> -->
         <!-- [(ngModel)] = "cityName" [query]="onAddCity"--- stajalo dok sam imala svoju metodu, cityName se moglo proslijediti jer sam tad radila sa stringovima, a sad radim sa objektima, pa ne moze -->
       </div>
@@ -44,7 +48,7 @@
     </table>
     </ul>
     <ul *ngIf="isClickedRow === true">
-      <h3> {{city.name}} City Details</h3>
+      <h3> {{cityFromTable.name}} City Details</h3>
       <table>
         <thead>
             <tr>
@@ -58,12 +62,12 @@
         </thead>
         <tbody>
             <tr>
-                <td>{{city.main.feels_like}} °C</td>
-                <td>{{city.wind.speed}}</td>
-                <td>{{city.sys.country}}</td>
-                <td>{{city.clouds.all}}</td>
-                <td>{{city.weather.description}}</td>
-                <td>{{city.main.sea_level}}</td>
+                <td>{{cityFromTable.main.feels_like}} °C</td>
+                <td>{{cityFromTable.wind.speed}}</td>
+                <td>{{cityFromTable.sys.country}}</td>
+                <td>{{cityFromTable.clouds.all}}</td>
+                <td>{{cityFromTable.weather.description}}</td>
+                <td>{{cityFromTable.main.sea_level}}</td>
             </tr>
         </tbody>
     </table>

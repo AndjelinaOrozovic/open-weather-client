@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   isClickedRow = false;
   cityName = '';
   city : ICity;
-  cityFromSearch : ICity;
+  cityFromTable : ICity; //ovo dodati za grad iz tabele kad selektujemo da ga search ne kupi
 
   // constructor(private http: HttpClient) {      //pravljeno na pocetku, kasnije premjesteno u servis
   // }
@@ -31,31 +31,27 @@ export class AppComponent implements OnInit {
   onFetchCities() {
     this.cityService.fetchCities().
     subscribe(cities => {
-      console.log(cities);
       this.citiesFromDatabase = cities;
     });
   }
 
   onCitiesQuery = (cityName : string) => this.cityService.searchNewCity(cityName);
 
-  onAddCity() {
-    console.log(this.city);
+  ispis() { //probavano samo da li se ispravno dodaje
+    console.log(this.citiesFromDatabase);
     console.log(this.onCitiesQuery);
   }
 
-  // onAddCity(cityName: string) {  // metoda za dohvatanje jednog grada u bazu uz pomoc stringa, tj city.name
-  //   if (cityName != "") {
-  //   this.cityName = cityName;
-  //   console.log(this.cityName);
-  //   this.cityService.addNewCity(this.cityName).
-  //   subscribe(responseCity => {
-  //     console.log(responseCity);
-  //   });
-  //   setTimeout(()=>{
-  //     location.reload();
-  //   }, 100);
-  //   } else alert("The field is empty!");
-  // }
+  //metoda za dodavanje novog grada u bazy uz dugme click me
+  onAddCity(city: ICity) {
+    this.cityService.addNewCity(this.city).
+    subscribe(responseCity => {
+      console.log(responseCity);
+    });
+    setTimeout(()=>{
+      location.reload();
+    }, 100);
+  }
 
   get hasCities() : boolean {
     return this.citiesFromDatabase?.length ? true : false;
@@ -71,7 +67,7 @@ export class AppComponent implements OnInit {
 
   isClicked(city: ICity) {
     this.isClickedRow = true;
-    this.city = city;
+    this.cityFromTable = city;
     console.log (city);
   }
 
