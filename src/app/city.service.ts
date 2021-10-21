@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { ICity } from "./CityData/ICity";
 
-const LOCALHOST = 'https://localhost:8043/api/cities';
+const BASEURL = 'https://localhost:8043/api/cities';
 
 @Injectable()
 export class CityService {
@@ -11,14 +11,14 @@ export class CityService {
   }
 
   fetchCities() {
-    return this.http.get(`${LOCALHOST}`);
+    return this.http.get(`${BASEURL}`);
   }
 
   addNewCity(city: ICity) {
-    return this.http.post(`${LOCALHOST}`, city);
+    return this.http.post(`${BASEURL}`, city);
   }
 
   searchNewCity(cityName: string) {
-    return this.http.get(`${LOCALHOST}/search?newCity=${cityName}`);
+    return this.http.get(`${BASEURL}/search?newCity=${cityName}`);
   }
 }

@@ -17,7 +17,7 @@
           [query]="onCitiesQuery"
         ></es-lookup> <br>
         <es-button
-          [disabled]="hasCity"
+          [disabled]="!hasCity"
           text="Save new city!"
           (click)="onAddCity(city)"
         ></es-button> <br>
