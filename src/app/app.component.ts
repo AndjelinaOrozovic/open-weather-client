@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { List } from 'lodash';
 import { CityService } from './city.service';
 import { ICity } from './CityData/ICity';
 
@@ -15,10 +16,7 @@ export class AppComponent implements OnInit {
   isClickedRow = false;
   cityName = '';
   city : ICity;
-  cityFromTable : ICity; //ovo dodati za grad iz tabele kad selektujemo da ga search ne kupi
-
-  // constructor(private http: HttpClient) {      //pravljeno na pocetku, kasnije premjesteno u servis
-  // }
+  cityFromTable : ICity;
 
   constructor(private cityService: CityService) {
   this.city = null;
@@ -37,18 +35,15 @@ export class AppComponent implements OnInit {
 
   onCitiesQuery = (cityName : string) => this.cityService.searchNewCity(cityName);
 
-  ispis() { //probavano samo da li se ispravno dodaje
-    console.log(this.citiesFromDatabase);
-    console.log(this.onCitiesQuery);
-  }
-
   //metoda za dodavanje novog grada u bazu
   onAddCity(city: ICity) {
-    for (var i in this.citiesFromDatabase) {
-      if (this.citiesFromDatabase[i].name == city.name) {
+
+    for (let i of this.citiesFromDatabase) {
+      if (i.name == city.name) {
         window.alert("City already exists!");
       }
     }
+
     this.cityService.addNewCity(this.city).
     subscribe(responseCity => {
       console.log(responseCity);
@@ -56,24 +51,20 @@ export class AppComponent implements OnInit {
     setTimeout(()=>{
       location.reload();
     }, 100);
+
   }
 
   get hasCities() : boolean {
     return this.citiesFromDatabase?.length ? true : false;
   }
 
-  // private fetchCities() {
-  //   this.http.get('https://localhost:8043/api/cities').    //pravljeno na pocetku, kasnije premjesteno u servis
-  //   subscribe(cities => {
-  //     console.log(cities);
-  //     this.citiesFromDatabase = cities;
-  //   });
-  // }
+  get hasCity() : boolean {
+     return !this.city;
+  }
 
   isClicked(city: ICity) {
     this.isClickedRow = true;
     this.cityFromTable = city;
-    console.log (city);
   }
 
 }

@@ -17,12 +17,10 @@
           [query]="onCitiesQuery"
         ></es-lookup> <br>
         <es-button
-          [disabled]="!city"
+          [disabled]="hasCity"
           text="Save new city!"
           (click)="onAddCity(city)"
         ></es-button> <br>
-        <!-- <button (click)="onAddCity()">Add</button> -->
-        <!-- [(ngModel)] = "cityName" [query]="onAddCity"--- stajalo dok sam imala svoju metodu, cityName se moglo proslijediti jer sam tad radila sa stringovima, a sad radim sa objektima, pa ne moze -->
       </div>
       <table>
         <thead>
